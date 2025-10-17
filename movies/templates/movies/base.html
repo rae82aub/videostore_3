@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Video Store</title>
+    <!-- External CSS (recommended) -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        /* fallback if CSS not found */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1d48e6;
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h2 {
+            margin: 0;
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .container {
+            padding: 20px;
+        }
+        .btn {
+            background-color: #1d48e6;
+            color: white;
+            padding: 6px 10px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-left: 8px;
+        }
+        .btn:hover {
+            background-color: #1538b5;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2><a href="{% url 'movies:movie_list' %}">My Video Store</a></h2>
+        <a class="btn" href="{% url 'movies:movie_create' %}">Add Movie</a>
+    </header>
+
+    <div class="container">
+        {% if messages %}
+            {% for m in messages %}
+                <p style="color:green;">{{ m }}</p>
+            {% endfor %}
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

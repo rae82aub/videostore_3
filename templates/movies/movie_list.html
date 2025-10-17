@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+  <form method="get" style="margin-bottom:12px; display:flex; gap:8px;">
+    <input type="text" name="q" value="{{ q }}" placeholder="Search by title..." />
+    <button class="btn" type="submit">Search</button>
+    <a class="btn" href="{% url 'movies:movie_list' %}">Clear</a>
+  </form>
+
+  {% if movies %}
+    <table>
+      <thead>
+        <tr>
+          <th>Movie ID</th>
+          <th>Title</th>
+          <th>Genre</th>
+          <th>Year</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for m in movies %}
+        <tr>
+          <td>{{ m.MovieID }}</td>
+          <td><a href="{% url 'movies:movie_detail' m.pk %}">{{ m.MovieTitle }}</a></td>
+          <td>{{ m.MovieGenre }}</td>
+          <td>{{ m.ReleaseYear }}</td>
+          <td class="actions">
+            <a class="btn" href="{% url 'movies:movie_update' m.pk %}">Edit</a>
+            <a class="btn" href="{% url 'movies:movie_delete' m.pk %}">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No movies yet. <a href="{% url 'movies:movie_create' %}">Add the first one</a>.</p>
+  {% endif %}
+{% endblock %}
+

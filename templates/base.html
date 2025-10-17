@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Rawan's Video Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body { font-family: system-ui, -apple-system, Arial; margin: 20px; }
+      header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+      a.btn, button.btn { padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; text-decoration: none; }
+      table { border-collapse: collapse; width: 100%; }
+      th, td { border: 1px solid #eee; padding: 8px; text-align: left; }
+	a {
+    color: #2563eb;
+  }
+  .btn, button.btn {
+    background: #2563eb;
+    color: #fff;
+    border: none;
+  }
+  .btn:hover, button.btn:hover {
+    background: #1d4ed8;
+  }
+  th {
+    background: #dbeafe;
+  }
+      form .row { display: grid; grid-template-columns: 160px 1fr; gap: 10px; align-items: center; margin-bottom: 10px; }
+      input, select { padding: 8px; border: 1px solid #ddd; border-radius: 6px; width: 100%; }
+      .actions { display: flex; gap: 8px; }
+      .container { max-width: 900px; margin: 0 auto; }
+      .flash { padding: 8px 10px; background: #f4fdf4; border: 1px solid #d7f0d7; border-radius: 8px; margin-bottom: 10px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h2 style="margin:0;"><a href="{% url 'movies:movie_list' %}" style="text-decoration:none;color:inherit;">Rawan's Video Store</a></h2>
+        <a class="btn" href="{% url 'movies:movie_create' %}">Add Movie</a>
+      </header>
+
+      {% if messages %}
+        {% for m in messages %}
+          <div class="flash">{{ m }}</div>
+        {% endfor %}
+      {% endif %}
+
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>
+

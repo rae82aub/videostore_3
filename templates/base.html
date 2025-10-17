@@ -1,24 +1,28 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2487.2">
-  <style type="text/css">
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff; background-color: #1d48e6}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; -webkit-text-stroke: #000000}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; -webkit-text-stroke: #000000; background-color: #f2fdf1}
-    span.s1 {font-kerning: none}
-    span.s2 {font: 12.0px 'Helvetica Neue'; font-kerning: none; -webkit-text-stroke: 0px #ffffff}
-  </style>
+    <meta charset="UTF-8">
+    <title>My Video Store</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-<h2 style="margin: 0.0px 0.0px 0.0px 0.0px; font: 18.0px 'Helvetica Neue'; -webkit-text-stroke: #000000"><span class="s1"><a href="file:///Users/rawananouti/Desktop/videostore/templates/%7B%25%20url%20'movies:movie_list'%20%25%7D"><b>My Video Store</b></a></span></h2>
-<p class="p2"><span class="s1"><a href="file:///Users/rawananouti/Desktop/videostore/templates/%7B%25%20url%20'movies:movie_create'%20%25%7D">Add Movie<span class="s2"></span></a></span></p>
-<p class="p3"><span class="s1">{% if messages %} {% for m in messages %}</span></p>
-<p class="p4"><span class="s1">{{ m }}</span></p>
-<p class="p3"><span class="s1">{% endfor %} {% endif %} {% block content %}{% endblock %}</span></p>
+    <header style="background-color:#1d48e6; color:white; padding:12px 20px; display:flex; justify-content:space-between; align-items:center;">
+        <h2 style="margin:0;">
+            <a href="{% url 'movies:movie_list' %}" style="color:white; text-decoration:none;">My Video Store</a>
+        </h2>
+        <a href="{% url 'movies:movie_create' %}" style="background-color:white; color:#1d48e6; padding:6px 10px; text-decoration:none; border-radius:4px;">Add Movie</a>
+    </header>
+
+    <div class="container" style="padding:20px;">
+        {% if messages %}
+            {% for m in messages %}
+                <p style="color:green;">{{ m }}</p>
+            {% endfor %}
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+    </div>
 </body>
 </html>

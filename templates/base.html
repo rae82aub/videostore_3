@@ -1,51 +1,24 @@
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Rawan's Video Store</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-      body { font-family: system-ui, -apple-system, Arial; margin: 20px; }
-      header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
-      a.btn, button.btn { padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; text-decoration: none; }
-      table { border-collapse: collapse; width: 100%; }
-      th, td { border: 1px solid #eee; padding: 8px; text-align: left; }
-	a {
-    color: #2563eb;
-  }
-  .btn, button.btn {
-    background: #2563eb;
-    color: #fff;
-    border: none;
-  }
-  .btn:hover, button.btn:hover {
-    background: #1d4ed8;
-  }
-  th {
-    background: #dbeafe;
-  }
-      form .row { display: grid; grid-template-columns: 160px 1fr; gap: 10px; align-items: center; margin-bottom: 10px; }
-      input, select { padding: 8px; border: 1px solid #ddd; border-radius: 6px; width: 100%; }
-      .actions { display: flex; gap: 8px; }
-      .container { max-width: 900px; margin: 0 auto; }
-      .flash { padding: 8px 10px; background: #f4fdf4; border: 1px solid #d7f0d7; border-radius: 8px; margin-bottom: 10px; }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <header>
-        <h2 style="margin:0;"><a href="{% url 'movies:movie_list' %}" style="text-decoration:none;color:inherit;">Rawan's Video Store</a></h2>
-        <a class="btn" href="{% url 'movies:movie_create' %}">Add Movie</a>
-      </header>
-
-      {% if messages %}
-        {% for m in messages %}
-          <div class="flash">{{ m }}</div>
-        {% endfor %}
-      {% endif %}
-
-      {% block content %}{% endblock %}
-    </div>
-  </body>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.2">
+  <style type="text/css">
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff; background-color: #1d48e6}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; -webkit-text-stroke: #000000}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; -webkit-text-stroke: #000000; background-color: #f2fdf1}
+    span.s1 {font-kerning: none}
+    span.s2 {font: 12.0px 'Helvetica Neue'; font-kerning: none; -webkit-text-stroke: 0px #ffffff}
+  </style>
+</head>
+<body>
+<h2 style="margin: 0.0px 0.0px 0.0px 0.0px; font: 18.0px 'Helvetica Neue'; -webkit-text-stroke: #000000"><span class="s1"><a href="file:///Users/rawananouti/Desktop/videostore/templates/%7B%25%20url%20'movies:movie_list'%20%25%7D"><b>My Video Store</b></a></span></h2>
+<p class="p2"><span class="s1"><a href="file:///Users/rawananouti/Desktop/videostore/templates/%7B%25%20url%20'movies:movie_create'%20%25%7D">Add Movie<span class="s2"></span></a></span></p>
+<p class="p3"><span class="s1">{% if messages %} {% for m in messages %}</span></p>
+<p class="p4"><span class="s1">{{ m }}</span></p>
+<p class="p3"><span class="s1">{% endfor %} {% endif %} {% block content %}{% endblock %}</span></p>
+</body>
 </html>
-

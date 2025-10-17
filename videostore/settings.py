@@ -84,11 +84,9 @@ USE_I18N = True
 USE_TZ = True
 
 
-# ✅ Static files configuration for Docker deployment
-STATIC_URL = "/static/"
+STATIC_URL = "static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
-# (optional but recommended)
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]

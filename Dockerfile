@@ -1,22 +1,21 @@
+# Use official Python image
 FROM python:3.11-slim
 
+# Don't write .pyc files and force stdout flush
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
+# Set work directory inside container
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    default-libmysqlclient-dev pkg-config \
-    gcc \
-    libc6-dev \
-    && rm -rf /var/lib/apt/lists/*
+# Copy everything from your local project to /app inside the container
+COPY . .
 
-COPY requirements.txt /app/
-RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+# Install Django (or use requirements.txt if you have one)
+RUN pip install --no-cache-dir django
 
-COPY . /app/
-
+# Expose port 8000 so you can access the app
 EXPOSE 8000
 
+# Run Django
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

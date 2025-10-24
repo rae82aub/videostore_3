@@ -1,16 +1,15 @@
-{% extends "base.html" %}
+{% extends "movies/base.html" %}
 {% block content %}
-  <h3 style="margin-top:0;">{{ movie.MovieTitle }} ({{ movie.ReleaseYear }})</h3>
+  <h3>{{ movie.MovieTitle }} ({{ movie.ReleaseYear }})</h3>
   <p><strong>Movie ID:</strong> {{ movie.MovieID }}</p>
   <p><strong>Genre:</strong> {{ movie.MovieGenre }}</p>
   <p><strong>Lead Actor:</strong> {{ movie.Actor1Name }}</p>
   <p><strong>Second Actor:</strong> {{ movie.Actor2Name|default:"—" }}</p>
   <p><strong>Director:</strong> {{ movie.DirectorName }}</p>
 
-  <div class="actions" style="margin-top:10px;">
+  <div style="margin-top:10px;">
     <a class="btn" href="{% url 'movies:movie_update' movie.pk %}">Edit</a>
     <a class="btn" href="{% url 'movies:movie_delete' movie.pk %}">Delete</a>
     <a class="btn" href="{% url 'movies:movie_list' %}">Back</a>
   </div>
 {% endblock %}
-

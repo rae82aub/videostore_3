@@ -1,0 +1,33 @@
+{% extends "movies/base.html" %}
+{% block content %}
+  <h3>{{ mode }} Movie</h3>
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+    <div><label for="id_MovieID">Movie ID</label> {{ form.MovieID }}</div>
+    <div><label for="id_MovieTitle">Title</label> {{ form.MovieTitle }}</div>
+    <div><label for="id_Actor1Name">Lead Actor</label> {{ form.Actor1Name }}</div>
+    <div><label for="id_Actor2Name">Second Actor</label> {{ form.Actor2Name }}</div>
+    <div><label for="id_DirectorName">Director</label> {{ form.DirectorName }}</div>
+    <div><label for="id_MovieGenre">Genre</label> {{ form.MovieGenre }}</div>
+    <div><label for="id_ReleaseYear">Release Year</label> {{ form.ReleaseYear }}</div>
+
+    <div style="margin-top:10px;">
+      <button type="submit" class="btn">Save</button>
+      <a href="{% url 'movies:movie_list' %}" class="btn">Cancel</a>
+    </div>
+
+    {% if form.errors %}
+      <ul style="color:red;">
+        {% for field in form %}
+          {% for error in field.errors %}
+            <li>{{ field.label }}: {{ error }}</li>
+          {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </form>
+{% endblock %}

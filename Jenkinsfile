@@ -8,17 +8,17 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git branch: 'main', url: 'YOUR_GITHUB_URL'
+        git branch: 'main', url: 'https://github.com/rae82aub/videostore_3.git'
       }
     }
 
     stage('Build in Minikube Docker') {
       steps {
         sh '''
-        # === Switch Docker to Minikube Docker ===
+        echo "🐳 Setting up Minikube Docker environment..."
         eval $(minikube docker-env)
 
-        # === Build Django image inside Minikube Docker ===
+        echo "🚧 Building Django Docker image..."
         docker build -t mydjangoapp:latest .
         '''
       }
@@ -27,14 +27,32 @@ pipeline {
     stage('Deploy to Minikube') {
       steps {
         sh '''
-        # === Apply the updated deployment manifest ===
+        echo "🚀 Applying Kubernetes manifests..."
         kubectl apply -f deployment.yaml
         kubectl apply -f service.yaml
 
-        # === Wait for rollout to finish ===
+        echo "🕒 Waiting for rollout to complete..."
         kubectl rollout status deployment/django-deployment
         '''
       }
+    }
+
+    stage('Get Service URL') {
+      steps {
+        sh '''
+        echo "🌍 Retrieving Django service URL..."
+        minikube service django-service --url | head -n 1
+        '''
+      }
+    }
+  }
+
+  post {
+    success {
+      echo '✅ Deployment successful! Django app is live on Minikube.'
+    }
+    failure {
+      echo '❌ Deployment failed. Check logs above for details.'
     }
   }
 }

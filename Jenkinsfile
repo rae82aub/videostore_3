@@ -37,15 +37,15 @@ pipeline {
       }
     }
 
-    stage('Get Service URL') {
-      steps {
-        sh '''
-        echo "🌍 Retrieving Django service URL..."
-        minikube service django-service --url | head -n 1
-        '''
-      }
+  stage('Get Service URL') {
+    steps {
+      sh '''
+      echo "🌍 Retrieving Django service URL (Mac-friendly)..."
+      minikube service list | grep django-service || echo "Service not found."
+      '''
     }
   }
+
 
   post {
     success {
